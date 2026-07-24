@@ -1,0 +1,145 @@
+openapi: 3.1.0
+info:
+  title: Nebulock Public Entities Findings API
+  version: v2
+  description: 'Public API for the Nebulock AI threat-hunting platform: Findings, Entities (actors/users/hosts), Hunts, hunt suggestions/reports, and detection Rules. Available to active Nebulock customers. Authentication uses per-organization API keys passed in the X-API-Key-ID and X-API-Key-Secret headers. Rate limit: 60 requests per minute.'
+  contact:
+    name: Nebulock
+    url: https://docs.nebulock.io/
+servers:
+- url: https://api.nebulock.io
+  description: Production
+security:
+- ApiKeyId: []
+  ApiKeySecret: []
+tags:
+- name: Findings
+  description: Retrieve and manage security findings and their comments.
+paths:
+  /api/v2/findings/{finding_id}:
+    get:
+      operationId: get_finding_with_details
+      summary: Retrieve the details for a specific finding.
+      tags:
+      - Findings
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: finding_id
+        in: path
+        required: true
+        schema:
+          type: string
+    patch:
+      operationId: update_finding
+      summary: Update an existing finding and return the updated finding.
+      tags:
+      - Findings
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: finding_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/v2/findings:
+    get:
+      operationId: list_findings
+      summary: Retrieve all findings within an organization, with pagination metadata.
+      tags:
+      - Findings
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+  /api/v2/findings/{finding_id}/comments:
+    get:
+      operationId: get_finding_comments
+      summary: Retrieve the comments for a finding.
+      tags:
+      - Findings
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: finding_id
+        in: path
+        required: true
+        schema:
+          type: string
+    post:
+      operationId: create_finding_comment
+      summary: Create a comment for a finding.
+      tags:
+      - Findings
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: finding_id
+        in: path
+        required: true
+        schema:
+          type: string
+components:
+  securitySchemes:
+    ApiKeyId:
+      type: apiKey
+      in: header
+      name: X-API-Key-ID
+    ApiKeySecret:
+      type: apiKey
+      in: header
+      name: X-API-Key-Secret

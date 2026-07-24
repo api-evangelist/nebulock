@@ -1,0 +1,261 @@
+openapi: 3.1.0
+info:
+  title: Nebulock Public Entities Rules API
+  version: v2
+  description: 'Public API for the Nebulock AI threat-hunting platform: Findings, Entities (actors/users/hosts), Hunts, hunt suggestions/reports, and detection Rules. Available to active Nebulock customers. Authentication uses per-organization API keys passed in the X-API-Key-ID and X-API-Key-Secret headers. Rate limit: 60 requests per minute.'
+  contact:
+    name: Nebulock
+    url: https://docs.nebulock.io/
+servers:
+- url: https://api.nebulock.io
+  description: Production
+security:
+- ApiKeyId: []
+  ApiKeySecret: []
+tags:
+- name: Rules
+  description: Create, validate, and run detection rules (Sigma / scheduled SQL).
+paths:
+  /public/v1/rules/validate:
+    post:
+      operationId: validate_rule_public_api
+      summary: Validate rule content (Sigma YAML or SQL) without persisting a rule.
+      tags:
+      - Rules
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+  /public/v1/rules:
+    post:
+      operationId: create_rule_public_api
+      summary: Create a rule in your organization (sigma, scheduled_sql, signal_combination).
+      tags:
+      - Rules
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+    get:
+      operationId: list_rules_public_api
+      summary: List rules for the authenticated organization.
+      tags:
+      - Rules
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+  /public/v1/rules/{rule_id}:
+    get:
+      operationId: get_rule_public_api
+      summary: Get a rule by ID (latest version unless a version is given).
+      tags:
+      - Rules
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: rule_id
+        in: path
+        required: true
+        schema:
+          type: string
+    delete:
+      operationId: delete_rule_public_api
+      summary: Delete a rule (all versions) in your organization.
+      tags:
+      - Rules
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: rule_id
+        in: path
+        required: true
+        schema:
+          type: string
+    patch:
+      operationId: update_rule_public_api
+      summary: Update a rule in your organization.
+      tags:
+      - Rules
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: rule_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /public/v1/rules/{rule_id}/test_sql_rule:
+    post:
+      operationId: test_sql_rule_public_api
+      summary: Run an on-demand test execution for a scheduled_sql rule.
+      tags:
+      - Rules
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: rule_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /public/v1/rules/{rule_id}/runs:
+    post:
+      operationId: run_rule_scheduled_sase_public_api
+      summary: Trigger a retroactive run of a scheduled_sql rule.
+      tags:
+      - Rules
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: rule_id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: get_rule_runs_scheduled_sase_public_api
+      summary: List scheduled-sase runs for a scheduled_sql rule (metadata only).
+      tags:
+      - Rules
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: rule_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /public/v1/rules/{rule_id}/runs/{rule_run_id}:
+    get:
+      operationId: get_rule_run_results_scheduled_sase_public_api
+      summary: Get row-level results for a single scheduled-sase run.
+      tags:
+      - Rules
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: rule_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: rule_run_id
+        in: path
+        required: true
+        schema:
+          type: string
+components:
+  securitySchemes:
+    ApiKeyId:
+      type: apiKey
+      in: header
+      name: X-API-Key-ID
+    ApiKeySecret:
+      type: apiKey
+      in: header
+      name: X-API-Key-Secret
