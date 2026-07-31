@@ -1,0 +1,1348 @@
+# generated: '2026-07-20'
+# method: searched
+# source: https://docs.nebulock.io/llms.txt + https://docs.nebulock.io/reference/ (published API reference index)
+# note: paths/methods/operationIds/summaries/security transcribed verbatim from Nebulock's
+#       published reference. Request/response schemas are not published openly and are
+#       intentionally not fabricated; operations carry documented status responses only.
+openapi: 3.1.0
+info:
+  title: Nebulock Public API
+  version: v2
+  description: 'Public API for the Nebulock AI threat-hunting platform: Findings, Entities (actors/users/hosts),
+    Hunts, hunt suggestions/reports, and detection Rules. Available to active Nebulock customers. Authentication
+    uses per-organization API keys passed in the X-API-Key-ID and X-API-Key-Secret headers. Rate limit:
+    60 requests per minute.'
+  contact:
+    name: Nebulock
+    url: https://docs.nebulock.io/
+servers:
+- url: https://api.nebulock.io
+  description: Production
+security:
+- ApiKeyId: []
+  ApiKeySecret: []
+tags:
+- name: Findings
+  description: Retrieve and manage security findings and their comments.
+- name: Entities
+  description: "Actors, users, and hosts \u2014 the identity/asset correlation graph."
+- name: Hunts
+  description: Threat hunts, hunt suggestions, and hunt reports.
+- name: Rules
+  description: Create, validate, and run detection rules (Sigma / scheduled SQL).
+paths:
+  /api/v2/findings/{finding_id}:
+    get:
+      operationId: get_finding_with_details
+      summary: Retrieve the details for a specific finding.
+      tags:
+      - Findings
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: finding_id
+        in: path
+        required: true
+        schema:
+          type: string
+    patch:
+      operationId: update_finding
+      summary: Update an existing finding and return the updated finding.
+      tags:
+      - Findings
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: finding_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/v2/findings:
+    get:
+      operationId: list_findings
+      summary: Retrieve all findings within an organization, with pagination metadata.
+      tags:
+      - Findings
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+  /api/v2/findings/{finding_id}/comments:
+    get:
+      operationId: get_finding_comments
+      summary: Retrieve the comments for a finding.
+      tags:
+      - Findings
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: finding_id
+        in: path
+        required: true
+        schema:
+          type: string
+    post:
+      operationId: create_finding_comment
+      summary: Create a comment for a finding.
+      tags:
+      - Findings
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: finding_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /public/v1/entities/actors:
+    get:
+      operationId: get_actors
+      summary: Retrieve a list of actors from your organization.
+      tags:
+      - Entities
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+    post:
+      operationId: create_actor
+      summary: Create a new actor from an ActorCorrelation object.
+      tags:
+      - Entities
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+  /public/v1/entities/actors/{actor_id}:
+    get:
+      operationId: get_actor
+      summary: Get one actor by ID with linked users and hosts.
+      tags:
+      - Entities
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: actor_id
+        in: path
+        required: true
+        schema:
+          type: string
+    patch:
+      operationId: update_actor_description
+      summary: Update an actor's description, risk_level, tags, groups or escalation.
+      tags:
+      - Entities
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: actor_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /public/v1/entities/actors/populated:
+    post:
+      operationId: create_populated_actors
+      summary: Bulk-create actors with linked users and hosts from flat rows.
+      tags:
+      - Entities
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+  /public/v1/entities/actors/{actor_id}/update_search_index:
+    patch:
+      operationId: update_actor_search
+      summary: Refresh an actor's keyword search index.
+      tags:
+      - Entities
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: actor_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /public/v1/entities/actors/{actor_id}/users/{user_id}:
+    post:
+      operationId: associate_user_with_actor
+      summary: Link an existing user to an actor.
+      tags:
+      - Entities
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: actor_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+    patch:
+      operationId: update_actor_user_api
+      summary: Update a user linked to an actor.
+      tags:
+      - Entities
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: actor_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+    delete:
+      operationId: unlink_user_from_actor
+      summary: Remove a user from an actor (user record is retained).
+      tags:
+      - Entities
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: actor_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /public/v1/entities/actors/{actor_id}/hosts/{host_id}:
+    delete:
+      operationId: unlink_host_from_actor
+      summary: Remove a host from an actor (host record is retained).
+      tags:
+      - Entities
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: actor_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: host_id
+        in: path
+        required: true
+        schema:
+          type: string
+    post:
+      operationId: associate_host_with_actor
+      summary: Link an existing host to an actor.
+      tags:
+      - Entities
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: actor_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: host_id
+        in: path
+        required: true
+        schema:
+          type: string
+    patch:
+      operationId: update_actor_host_api
+      summary: Update a host linked to an actor.
+      tags:
+      - Entities
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: actor_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: host_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /public/v1/entities/actors/{actor_id}/new_host:
+    post:
+      operationId: create_host_for_actor_api
+      summary: Create a host and link it to an actor.
+      tags:
+      - Entities
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: actor_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /public/v1/entities/actors/{actor_id}/new_user:
+    post:
+      operationId: create_user_for_actor_api
+      summary: Create a user and link it to an actor.
+      tags:
+      - Entities
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: actor_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /public/v1/entities/hosts/{host_id}:
+    patch:
+      operationId: update_host_record
+      summary: Update a host by ID.
+      tags:
+      - Entities
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: host_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /public/v1/entities/users:
+    get:
+      operationId: get_users
+      summary: List identity users for your organization.
+      tags:
+      - Entities
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+    post:
+      operationId: create_users
+      summary: Create one or more users (JSON array, up to 1000).
+      tags:
+      - Entities
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+  /public/v1/entities/users/{user_id}:
+    patch:
+      operationId: update_user
+      summary: Update a user by ID.
+      tags:
+      - Entities
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /public/v1/entities/hosts:
+    get:
+      operationId: get_hosts
+      summary: List hosts (endpoints or machines) for your organization.
+      tags:
+      - Entities
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+    post:
+      operationId: create_hosts
+      summary: Create one or more hosts (JSON array, up to 1000).
+      tags:
+      - Entities
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+  /public/v1/hunt_suggestions:
+    post:
+      operationId: generate_hunt_suggestions
+      summary: Generate hunt suggestions based on threat intelligence context.
+      tags:
+      - Hunts
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+    get:
+      operationId: list_hunt_suggestions
+      summary: Retrieve a paginated list of hunt suggestions.
+      tags:
+      - Hunts
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+  /public/v1/hunt_suggestions/jobs/{job_id}:
+    get:
+      operationId: get_hunt_suggestions_by_job
+      summary: Retrieve hunt suggestions for a specific job.
+      tags:
+      - Hunts
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /public/v1/hunt_suggestions/{hunt_suggestion_id}:
+    get:
+      operationId: get_hunt_suggestion
+      summary: Retrieve a single hunt suggestion by ID.
+      tags:
+      - Hunts
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: hunt_suggestion_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /public/v1/hunt_agent_versions:
+    get:
+      operationId: get_hunt_agent_versions
+      summary: Return available agent versions, supported modes, defaults, and deprecation status.
+      tags:
+      - Hunts
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+  /public/v1/hunt_reports:
+    get:
+      operationId: list_hunt_reports
+      summary: Retrieve a paginated list of hunt reports.
+      tags:
+      - Hunts
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+  /public/v1/hunt_reports/{hunt_report_id}:
+    get:
+      operationId: get_hunt_report
+      summary: Retrieve a single hunt report with markdown content.
+      tags:
+      - Hunts
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: hunt_report_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /public/v1/hunt_reports/{hunt_report_id}/pdf:
+    get:
+      operationId: get_hunt_report_pdf
+      summary: Download the hunt report as a PDF file.
+      tags:
+      - Hunts
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: hunt_report_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /public/v1/hunt_reports/{hunt_report_id}/retry:
+    post:
+      operationId: retry_hunt_report
+      summary: Retry generation of a failed hunt report.
+      tags:
+      - Hunts
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: hunt_report_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /public/v2/hunts:
+    get:
+      operationId: list_hunts_v2
+      summary: Retrieve a paginated list of hunts (default source filter 'manual').
+      tags:
+      - Hunts
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+    post:
+      operationId: create_hunt_v2
+      summary: Create a hunt with async directive processing.
+      tags:
+      - Hunts
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+  /public/v2/hunts/{hunt_id}:
+    get:
+      operationId: get_hunt_v2
+      summary: Get a hunt with directives, blocks, and user enrichment.
+      tags:
+      - Hunts
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: hunt_id
+        in: path
+        required: true
+        schema:
+          type: string
+    patch:
+      operationId: update_hunt_v2
+      summary: Update a hunt's properties.
+      tags:
+      - Hunts
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: hunt_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /public/v2/hunts/{hunt_id}/generate_report:
+    patch:
+      operationId: generate_hunt_report_v2
+      summary: Trigger report generation for a hunt.
+      tags:
+      - Hunts
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: hunt_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /public/v2/hunts/{hunt_id}/directives/{directive_id}:
+    get:
+      operationId: get_directive_v2
+      summary: Get a directive with blocks and user enrichment.
+      tags:
+      - Hunts
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: hunt_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: directive_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /public/v2/hunts/{hunt_id}/directives:
+    post:
+      operationId: add_directive_v2
+      summary: Add a new directive (follow-up query) to an existing hunt.
+      tags:
+      - Hunts
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: hunt_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /public/v2/hunts/{hunt_id}/directives/{directive_id}/retry:
+    post:
+      operationId: retry_directive_v2
+      summary: Retry a directive that has failed processing.
+      tags:
+      - Hunts
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: hunt_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: directive_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /public/v2/hunts/{hunt_id}/directives/{directive_id}/stop:
+    post:
+      operationId: stop_directive_v2
+      summary: Stop a directive that is currently being processed.
+      tags:
+      - Hunts
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: hunt_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: directive_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /public/v2/hunt_reports/{hunt_report_id}/feedback:
+    get:
+      operationId: list_hunt_report_feedback_v2
+      summary: List append-only feedback rows for a completed hunt report.
+      tags:
+      - Hunts
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: hunt_report_id
+        in: path
+        required: true
+        schema:
+          type: string
+    post:
+      operationId: create_hunt_report_feedback_v2
+      summary: Create append-only feedback for a completed hunt report.
+      tags:
+      - Hunts
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: hunt_report_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /public/v1/rules/validate:
+    post:
+      operationId: validate_rule_public_api
+      summary: Validate rule content (Sigma YAML or SQL) without persisting a rule.
+      tags:
+      - Rules
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+  /public/v1/rules:
+    post:
+      operationId: create_rule_public_api
+      summary: Create a rule in your organization (sigma, scheduled_sql, signal_combination).
+      tags:
+      - Rules
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+    get:
+      operationId: list_rules_public_api
+      summary: List rules for the authenticated organization.
+      tags:
+      - Rules
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+  /public/v1/rules/{rule_id}:
+    get:
+      operationId: get_rule_public_api
+      summary: Get a rule by ID (latest version unless a version is given).
+      tags:
+      - Rules
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: rule_id
+        in: path
+        required: true
+        schema:
+          type: string
+    delete:
+      operationId: delete_rule_public_api
+      summary: Delete a rule (all versions) in your organization.
+      tags:
+      - Rules
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: rule_id
+        in: path
+        required: true
+        schema:
+          type: string
+    patch:
+      operationId: update_rule_public_api
+      summary: Update a rule in your organization.
+      tags:
+      - Rules
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: rule_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /public/v1/rules/{rule_id}/test_sql_rule:
+    post:
+      operationId: test_sql_rule_public_api
+      summary: Run an on-demand test execution for a scheduled_sql rule.
+      tags:
+      - Rules
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: rule_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /public/v1/rules/{rule_id}/runs:
+    post:
+      operationId: run_rule_scheduled_sase_public_api
+      summary: Trigger a retroactive run of a scheduled_sql rule.
+      tags:
+      - Rules
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: rule_id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: get_rule_runs_scheduled_sase_public_api
+      summary: List scheduled-sase runs for a scheduled_sql rule (metadata only).
+      tags:
+      - Rules
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: rule_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /public/v1/rules/{rule_id}/runs/{rule_run_id}:
+    get:
+      operationId: get_rule_run_results_scheduled_sase_public_api
+      summary: Get row-level results for a single scheduled-sase run.
+      tags:
+      - Rules
+      responses:
+        '200':
+          description: Successful response
+        '401':
+          description: Missing or invalid API key credentials
+        '403':
+          description: Not permitted for this organization
+        '404':
+          description: Resource not found
+        '422':
+          description: Validation error
+        '429':
+          description: Rate limit exceeded (60 requests per minute)
+      parameters:
+      - name: rule_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: rule_run_id
+        in: path
+        required: true
+        schema:
+          type: string
+components:
+  securitySchemes:
+    ApiKeyId:
+      type: apiKey
+      in: header
+      name: X-API-Key-ID
+    ApiKeySecret:
+      type: apiKey
+      in: header
+      name: X-API-Key-Secret

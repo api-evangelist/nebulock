@@ -1,0 +1,22 @@
+# generated: '2026-07-20'
+# method: generated
+# source: openapi/nebulock-openapi.yml
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Nebulock Public API
+  version: 1.0.0
+extends: openapi/nebulock-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: true
+    x-api-evangelist-network: https://apis.io/nebulock
+    x-rate-limit: 60/min
+    x-audience: active-nebulock-customers
+- target: $.info
+  update:
+    x-agent-ready: true
+    x-mcp-candidate: mcp/nebulock-mcp.yml
+- target: $.components.securitySchemes
+  update:
+    x-auth-docs: https://docs.nebulock.io/reference/getting-started-with-the-nebulock-findings-api

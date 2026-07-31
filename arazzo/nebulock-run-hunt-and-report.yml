@@ -1,0 +1,61 @@
+arazzo: 1.0.1
+info:
+  title: Run a Nebulock hunt and generate a report
+  version: 1.0.0
+  summary: Create a hunt, add a follow-up directive, then generate and fetch its report.
+sourceDescriptions:
+- name: nebulock
+  url: ../openapi/nebulock-openapi.yml
+  type: openapi
+workflows:
+- workflowId: runHuntAndReport
+  summary: Create a hunt, drive it with a directive, and generate a report.
+  inputs:
+    type: object
+    properties:
+      query:
+        type: string
+      followup:
+        type: string
+  steps:
+  - stepId: createHunt
+    operationId: create_hunt_v2
+    requestBody:
+      contentType: application/json
+      payload:
+        query: $inputs.query
+    outputs:
+      huntId: $response.body#/hunt_id
+  - stepId: getHunt
+    operationId: get_hunt_v2
+    parameters:
+    - name: hunt_id
+      in: path
+      value: $steps.createHunt.outputs.huntId
+  - stepId: addDirective
+    operationId: add_directive_v2
+    parameters:
+    - name: hunt_id
+      in: path
+      value: $steps.createHunt.outputs.huntId
+    requestBody:
+      contentType: application/json
+      payload:
+        query: $inputs.followup
+  - stepId: generateReport
+    operationId: generate_hunt_report_v2
+    parameters:
+    - name: hunt_id
+      in: path
+      value: $steps.createHunt.outputs.huntId
+    outputs:
+      reportId: $response.body#/hunt_report_id
+  - stepId: fetchReport
+    operationId: get_hunt_report
+    parameters:
+    - name: hunt_report_id
+      in: path
+      value: $steps.generateReport.outputs.reportId
+  outputs:
+    huntId: $steps.createHunt.outputs.huntId
+    reportId: $steps.generateReport.outputs.reportId

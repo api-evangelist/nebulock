@@ -1,0 +1,24 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/nebulock-openapi.yml + https://docs.nebulock.io/reference/
+format: http-status
+note: >-
+  Nebulock does not publish a detailed error-code registry openly (the public API is
+  customer-only). These are the HTTP status semantics documented in the reference and
+  applied across operations. No application/problem+json envelope is documented.
+problems:
+- status: 401
+  title: Unauthorized
+  detail: Missing or invalid X-API-Key-ID / X-API-Key-Secret credentials.
+- status: 403
+  title: Forbidden
+  detail: The API key is valid but not permitted for this organization or resource.
+- status: 404
+  title: Not Found
+  detail: The requested finding, actor, user, host, hunt, report, or rule does not exist.
+- status: 422
+  title: Unprocessable Entity
+  detail: Request body failed validation (e.g. invalid rule content, malformed Sigma YAML, bad risk_level).
+- status: 429
+  title: Too Many Requests
+  detail: Rate limit exceeded. The API allows 60 requests per minute.

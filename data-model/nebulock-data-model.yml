@@ -1,0 +1,75 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/nebulock-openapi.yml + https://docs.nebulock.io/reference/
+entities:
+- name: finding
+  description: A security finding surfaced by the platform, versioned by signals.
+  key: finding_id
+  relationships:
+  - has_many: comment
+    via: finding_id
+- name: comment
+  description: A comment attached to a finding.
+  relationships:
+  - belongs_to: finding
+    via: finding_id
+- name: actor
+  description: A correlated person or entity in the identity/asset graph.
+  key: actor_id
+  relationships:
+  - has_many: user
+    via: actor_id
+  - has_many: host
+    via: actor_id
+- name: user
+  description: An identity user; may be linked to zero or more actors.
+  key: user_id
+  relationships:
+  - belongs_to: actor
+    via: actor_id
+- name: host
+  description: An endpoint or machine; may be linked to zero or more actors.
+  key: host_id
+  relationships:
+  - belongs_to: actor
+    via: actor_id
+- name: hunt
+  description: A threat hunt with async directive processing (v2).
+  key: hunt_id
+  relationships:
+  - has_many: directive
+    via: hunt_id
+  - has_many: hunt_report
+    via: hunt_id
+- name: directive
+  description: A follow-up query/step within a hunt.
+  key: directive_id
+  relationships:
+  - belongs_to: hunt
+    via: hunt_id
+- name: hunt_suggestion
+  description: A suggested hunt generated from threat intelligence context.
+  key: hunt_suggestion_id
+  relationships:
+  - belongs_to: job
+    via: job_id
+- name: hunt_report
+  description: A generated hunt report (markdown / PDF) with append-only feedback.
+  key: hunt_report_id
+  relationships:
+  - belongs_to: hunt
+    via: hunt_id
+  - has_many: hunt_report_feedback
+    via: hunt_report_id
+- name: rule
+  description: A detection rule (Sigma / scheduled SQL / signal combination), versioned.
+  key: rule_id
+  relationships:
+  - has_many: rule_run
+    via: rule_id
+- name: rule_run
+  description: A scheduled-sase run of a scheduled_sql rule.
+  key: rule_run_id
+  relationships:
+  - belongs_to: rule
+    via: rule_id

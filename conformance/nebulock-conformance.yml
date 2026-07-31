@@ -1,0 +1,30 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/nebulock-openapi.yml + https://docs.nebulock.io/
+standards:
+- id: oauth2
+  conforms: false
+  evidence: API uses static per-organization API keys, not OAuth2.
+- id: oidc
+  conforms: false
+- id: saml2
+  conforms: true
+  evidence: Portal authentication supports SAML SSO via Okta and Microsoft Entra.
+- id: api-key-auth
+  conforms: true
+  evidence: X-API-Key-ID and X-API-Key-Secret header credentials on every request.
+- id: pagination
+  conforms: true
+  evidence: List endpoints (findings, actors, users, hosts, hunts, rules) return pagination metadata.
+- id: rate-limiting
+  conforms: true
+  evidence: Documented 60 requests/minute limit; 429 on exceed.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: No application/problem+json documented in the public reference.
+- id: sigma-detection-rules
+  conforms: true
+  evidence: Detection rules accept Sigma YAML (rule_type=sigma) alongside scheduled SQL.
+- id: mitre-attack
+  conforms: true
+  evidence: MITRE ATT&CK Tactics/Techniques coverage is a first-class platform concept.

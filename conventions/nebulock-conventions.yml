@@ -1,0 +1,45 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.nebulock.io/reference/ + openapi/nebulock-openapi.yml
+authentication:
+  style: api-key (dual header)
+  headers:
+  - X-API-Key-ID
+  - X-API-Key-Secret
+  portal: SAML SSO (Okta / Microsoft Entra)
+  ref: authentication/nebulock-authentication.yml
+idempotency:
+  supported: false
+  notes: >-
+    No idempotency-key header or idempotent-retry contract is documented for the
+    Nebulock public API. Do not assume safe automatic retries on write operations.
+pagination:
+  style: metadata-envelope
+  notes: >-
+    List endpoints return results wrapped with pagination metadata; bulk create
+    endpoints (users, hosts) return a single object for a one-element array and a
+    paginated { meta, data } list for multiple elements.
+  params:
+  - limit
+  - offset
+  response_fields:
+  - meta
+  - data
+versioning:
+  style: uri-path
+  values: [v1, v2]
+  ref: lifecycle/nebulock-lifecycle.yml
+rate_limiting:
+  limit: 60/min
+  signal: 429 status on exceed
+error_envelope:
+  style: http-status
+  problem_json: false
+  ref: errors/nebulock-problem-types.yml
+bulk_operations:
+  notes: >-
+    Users and hosts accept a JSON array (up to 1000 items) per request; actors can
+    be bulk-created with linked users/hosts via POST /public/v1/entities/actors/populated.
+detection_rules:
+  formats: [sigma-yaml, scheduled_sql, signal_combination]
+  validate_before_create: POST /public/v1/rules/validate

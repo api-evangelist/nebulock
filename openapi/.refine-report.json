@@ -1,0 +1,20 @@
+{
+  "provider": "nebulock",
+  "sources": [
+    "nebulock-entities-api-openapi.yml",
+    "nebulock-findings-api-openapi.yml",
+    "nebulock-hunts-api-openapi.yml",
+    "nebulock-rules-api-openapi.yml"
+  ],
+  "outputs": [
+    "nebulock-entities-api-openapi.yml",
+    "nebulock-findings-api-openapi.yml",
+    "nebulock-hunts-api-openapi.yml",
+    "nebulock-rules-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

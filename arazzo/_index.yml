@@ -1,0 +1,12 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/nebulock-openapi.yml
+workflows:
+- file: nebulock-run-hunt-and-report.yml
+  workflowId: runHuntAndReport
+  title: Run a Nebulock hunt and generate a report
+  summary: Create a hunt, add a follow-up directive, then generate and fetch its report.
+- file: nebulock-validate-and-deploy-rule.yml
+  workflowId: validateAndDeployRule
+  title: Validate and deploy a Nebulock detection rule
+  summary: Validate rule content, create it inactive, then activate it.

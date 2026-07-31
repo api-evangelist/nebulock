@@ -1,0 +1,49 @@
+arazzo: 1.0.1
+info:
+  title: Validate and deploy a Nebulock detection rule
+  version: 1.0.0
+  summary: Validate rule content, create it inactive, then activate it.
+sourceDescriptions:
+- name: nebulock
+  url: ../openapi/nebulock-openapi.yml
+  type: openapi
+workflows:
+- workflowId: validateAndDeployRule
+  summary: Validate a Sigma rule, create it inactive, then flip it to active.
+  inputs:
+    type: object
+    properties:
+      rule_type:
+        type: string
+      content:
+        type: string
+  steps:
+  - stepId: validateRule
+    operationId: validate_rule_public_api
+    requestBody:
+      contentType: application/json
+      payload:
+        rule_type: $inputs.rule_type
+        content: $inputs.content
+  - stepId: createRule
+    operationId: create_rule_public_api
+    requestBody:
+      contentType: application/json
+      payload:
+        rule_type: $inputs.rule_type
+        content: $inputs.content
+        status: inactive
+    outputs:
+      ruleId: $response.body#/rule_id
+  - stepId: activateRule
+    operationId: update_rule_public_api
+    parameters:
+    - name: rule_id
+      in: path
+      value: $steps.createRule.outputs.ruleId
+    requestBody:
+      contentType: application/json
+      payload:
+        status: active
+  outputs:
+    ruleId: $steps.createRule.outputs.ruleId

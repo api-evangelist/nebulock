@@ -1,0 +1,16 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/nebulock-openapi.yml
+skills:
+- file: nebulock-triage-findings.md
+  name: Triage Nebulock security findings
+  api: openapi/nebulock-openapi.yml
+  operations: [list_findings, get_finding_with_details, get_finding_comments, create_finding_comment, update_finding]
+- file: nebulock-run-a-hunt.md
+  name: Run a threat hunt and generate a report
+  api: openapi/nebulock-openapi.yml
+  operations: [generate_hunt_suggestions, create_hunt_v2, get_hunt_v2, add_directive_v2, generate_hunt_report_v2, get_hunt_report]
+- file: nebulock-manage-detection-rules.md
+  name: Author and deploy Nebulock detection rules
+  api: openapi/nebulock-openapi.yml
+  operations: [validate_rule_public_api, create_rule_public_api, list_rules_public_api, update_rule_public_api, run_rule_scheduled_sase_public_api]

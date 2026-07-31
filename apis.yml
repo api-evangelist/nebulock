@@ -1,27 +1,169 @@
 aid: nebulock
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/nebulock.png
 name: Nebulock
-description: 'Nebulock is a company surfaced as a portfolio company of bain-capital-ventures and added
-  to the API Evangelist network as a stub for enrichment. Sector: security. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: >-
+  Nebulock is an agentic, contextual security-analytics platform built for hunt-first security
+  operations. A swarm of AI agents continuously hunts across cloud, SaaS, network, endpoint, and
+  identity telemetry, maintaining a behavioral Context Graph to surface endpoint- and identity-based
+  threats, close detection coverage gaps, and catch human and agentic insider threats before they
+  escalate into incidents. The platform runs hypothesis-driven investigations, writes and deploys
+  detection rules (Sigma and scheduled SQL), retrohunts historical data, simulates attacks, and maps
+  coverage against MITRE ATT&CK. Nebulock exposes a customer-facing public API for Findings, Entities
+  (actors/users/hosts correlation), Hunts, hunt suggestions and reports, and detection Rules,
+  authenticated with per-organization API keys. The company raised a $25M Series A and is backed by
+  Bain Capital Ventures.
 url: https://raw.githubusercontent.com/api-evangelist/nebulock/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - bain-capital-ventures
-x-tier: stub
-x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
 - Security
-apis: []
+- Threat Hunting
+- Threat Detection
+- Security Operations
+- Detection Engineering
+- AI Agents
+- SIEM
+apis:
+- aid: nebulock:nebulock-entities-api
+  name: Nebulock Entities API
+  description: Actors, users, and hosts — the identity/asset correlation graph.
+  humanURL: https://docs.nebulock.io/reference/getting-started-with-the-nebulock-findings-api
+  baseURL: https://api.nebulock.io
+  tags:
+  - Entities
+  properties:
+  - type: OpenAPI
+    url: openapi/nebulock-entities-api-openapi.yml
+  - type: Documentation
+    url: https://docs.nebulock.io/
+  - type: APIReference
+    url: https://docs.nebulock.io/reference/getting-started-with-the-nebulock-findings-api
+  - type: Authentication
+    url: authentication/nebulock-authentication.yml
+- aid: nebulock:nebulock-findings-api
+  name: Nebulock Findings API
+  description: Retrieve and manage security findings and their comments.
+  humanURL: https://docs.nebulock.io/reference/getting-started-with-the-nebulock-findings-api
+  baseURL: https://api.nebulock.io
+  tags:
+  - Findings
+  properties:
+  - type: OpenAPI
+    url: openapi/nebulock-findings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.nebulock.io/
+  - type: APIReference
+    url: https://docs.nebulock.io/reference/getting-started-with-the-nebulock-findings-api
+  - type: Authentication
+    url: authentication/nebulock-authentication.yml
+- aid: nebulock:nebulock-hunts-api
+  name: Nebulock Hunts API
+  description: Threat hunts, hunt suggestions, and hunt reports.
+  humanURL: https://docs.nebulock.io/reference/getting-started-with-the-nebulock-findings-api
+  baseURL: https://api.nebulock.io
+  tags:
+  - Hunts
+  properties:
+  - type: OpenAPI
+    url: openapi/nebulock-hunts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.nebulock.io/
+  - type: APIReference
+    url: https://docs.nebulock.io/reference/getting-started-with-the-nebulock-findings-api
+  - type: Authentication
+    url: authentication/nebulock-authentication.yml
+- aid: nebulock:nebulock-rules-api
+  name: Nebulock Rules API
+  description: Create, validate, and run detection rules (Sigma / scheduled SQL).
+  humanURL: https://docs.nebulock.io/reference/getting-started-with-the-nebulock-findings-api
+  baseURL: https://api.nebulock.io
+  tags:
+  - Rules
+  properties:
+  - type: OpenAPI
+    url: openapi/nebulock-rules-api-openapi.yml
+  - type: Documentation
+    url: https://docs.nebulock.io/
+  - type: APIReference
+    url: https://docs.nebulock.io/reference/getting-started-with-the-nebulock-findings-api
+  - type: Authentication
+    url: authentication/nebulock-authentication.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Documentation
+  url: https://docs.nebulock.io/
+- type: APIReference
+  url: https://docs.nebulock.io/reference/getting-started-with-the-nebulock-findings-api
+- type: GettingStarted
+  url: https://docs.nebulock.io/docs/access
+- type: Blog
+  url: https://nebulock.io/blog
+- type: BlogRSS
+  url: https://nebulock.io/blog/rss.xml
+- type: GitHubOrganization
+  url: https://github.com/nebulock
+- type: Support
+  url: https://docs.nebulock.io/docs/help
+- type: TrustCenter
+  url: https://trust.nebulock.io/
+- type: OpenAPI
+  url: openapi/nebulock-openapi.yml
+- type: Authentication
+  url: authentication/nebulock-authentication.yml
+- type: AgenticAccess
+  url: agentic-access/nebulock-agentic-access.yml
+- type: DomainSecurity
+  url: security/nebulock-domain-security.yml
+- type: MCPServer
+  url: mcp/nebulock-mcp.yml
+- type: Overlay
+  url: overlays/nebulock-overlay.yaml
+- type: Conformance
+  url: conformance/nebulock-conformance.yml
+- type: ErrorCatalog
+  url: errors/nebulock-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/nebulock-lifecycle.yml
+- type: Conventions
+  url: conventions/nebulock-conventions.yml
+- type: DataModel
+  url: data-model/nebulock-data-model.yml
+- type: LLMsTxt
+  url: llms/nebulock-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Arazzo
+  name: Run a Nebulock hunt and generate a report
+  url: arazzo/nebulock-run-hunt-and-report.yml
+- type: Arazzo
+  name: Validate and deploy a Nebulock detection rule
+  url: arazzo/nebulock-validate-and-deploy-rule.yml
 - type: Website
   url: https://nebulock.io/
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 19
+  pass: local-v1

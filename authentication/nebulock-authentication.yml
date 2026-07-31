@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/nebulock-openapi.yml
+docs: https://docs.nebulock.io/reference/getting-started-with-the-nebulock-findings-api
+notes: >-
+  The Nebulock public API is available only to active Nebulock customers.
+  API keys are issued and managed by organization administrators in the Nebulock
+  platform (see https://docs.nebulock.io/docs/create-an-api-key). Every request
+  must carry two headers: X-API-Key-ID and X-API-Key-Secret. Portal/user access
+  to the Nebulock platform itself is via SAML SSO (Okta or Microsoft Entra).
+  Rate limit: 60 requests per minute.
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+  portal_sso:
+  - SAML (Okta)
+  - SAML (Microsoft Entra)
+  rate_limit: 60/min
+schemes:
+- name: ApiKeyId
+  type: apiKey
+  in: header
+  parameter: X-API-Key-ID
+  sources:
+  - openapi/nebulock-openapi.yml
+- name: ApiKeySecret
+  type: apiKey
+  in: header
+  parameter: X-API-Key-Secret
+  sources:
+  - openapi/nebulock-openapi.yml

@@ -1,0 +1,72 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/nebulock-openapi.yml
+note: >-
+  No official hosted MCP server was found for Nebulock. This is a CANDIDATE tool
+  surface derived one-to-one from the published Nebulock Public API operations, to
+  seed an MCP server. Auth would map the X-API-Key-ID / X-API-Key-Secret headers.
+server:
+  name: nebulock
+  transport: http
+  url: null
+auth:
+  type: apiKey
+  headers:
+  - X-API-Key-ID
+  - X-API-Key-Secret
+tools:
+- name: list_findings
+  description: Retrieve all findings within an organization (paginated).
+  source_operation: openapi/nebulock-openapi.yml#list_findings
+- name: get_finding_with_details
+  description: Retrieve the details for a specific finding.
+  source_operation: openapi/nebulock-openapi.yml#get_finding_with_details
+- name: update_finding
+  description: Update an existing finding.
+  source_operation: openapi/nebulock-openapi.yml#update_finding
+- name: create_finding_comment
+  description: Create a comment on a finding.
+  source_operation: openapi/nebulock-openapi.yml#create_finding_comment
+- name: get_actors
+  description: Retrieve a list of actors from your organization.
+  source_operation: openapi/nebulock-openapi.yml#get_actors
+- name: create_actor
+  description: Create a new actor (identity/entity correlation).
+  source_operation: openapi/nebulock-openapi.yml#create_actor
+- name: get_users
+  description: List identity users for your organization.
+  source_operation: openapi/nebulock-openapi.yml#get_users
+- name: get_hosts
+  description: List hosts (endpoints or machines) for your organization.
+  source_operation: openapi/nebulock-openapi.yml#get_hosts
+- name: generate_hunt_suggestions
+  description: Generate hunt suggestions based on threat intelligence context.
+  source_operation: openapi/nebulock-openapi.yml#generate_hunt_suggestions
+- name: create_hunt_v2
+  description: Create a hunt with async directive processing.
+  source_operation: openapi/nebulock-openapi.yml#create_hunt_v2
+- name: get_hunt_v2
+  description: Get a hunt with directives, blocks, and enrichment.
+  source_operation: openapi/nebulock-openapi.yml#get_hunt_v2
+- name: add_directive_v2
+  description: Add a follow-up directive to an existing hunt.
+  source_operation: openapi/nebulock-openapi.yml#add_directive_v2
+- name: generate_hunt_report_v2
+  description: Trigger report generation for a hunt.
+  source_operation: openapi/nebulock-openapi.yml#generate_hunt_report_v2
+- name: list_hunt_reports
+  description: Retrieve a paginated list of hunt reports.
+  source_operation: openapi/nebulock-openapi.yml#list_hunt_reports
+- name: validate_rule_public_api
+  description: Validate detection rule content (Sigma YAML or SQL) without persisting.
+  source_operation: openapi/nebulock-openapi.yml#validate_rule_public_api
+- name: create_rule_public_api
+  description: Create a detection rule (sigma, scheduled_sql, signal_combination).
+  source_operation: openapi/nebulock-openapi.yml#create_rule_public_api
+- name: list_rules_public_api
+  description: List detection rules for the authenticated organization.
+  source_operation: openapi/nebulock-openapi.yml#list_rules_public_api
+- name: run_rule_scheduled_sase_public_api
+  description: Trigger a retroactive run of a scheduled_sql rule.
+  source_operation: openapi/nebulock-openapi.yml#run_rule_scheduled_sase_public_api
