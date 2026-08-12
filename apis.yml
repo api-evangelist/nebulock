@@ -129,7 +129,7 @@ common:
 - type: TrustCenter
   url: https://trust.nebulock.io/
 - type: OpenAPI
-  url: openapi/nebulock-openapi.yml
+  url: openapi/_original/nebulock-openapi.yml
 - type: Authentication
   url: authentication/nebulock-authentication.yml
 - type: AgenticAccess
