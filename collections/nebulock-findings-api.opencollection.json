@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nebulock Public Entities Findings API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key-ID",
+      "value": "{{X-API-Key-ID}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Findings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve the details for a specific finding.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nebulock.io/api/v2/findings/:finding_id",
+            "params": [
+              {
+                "name": "finding_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the details for a specific finding."
+        },
+        {
+          "info": {
+            "name": "Update an existing finding and return the updated finding.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.nebulock.io/api/v2/findings/:finding_id",
+            "params": [
+              {
+                "name": "finding_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update an existing finding and return the updated finding."
+        },
+        {
+          "info": {
+            "name": "Retrieve all findings within an organization, with pagination metadata.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nebulock.io/api/v2/findings"
+          },
+          "docs": "Retrieve all findings within an organization, with pagination metadata."
+        },
+        {
+          "info": {
+            "name": "Retrieve the comments for a finding.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nebulock.io/api/v2/findings/:finding_id/comments",
+            "params": [
+              {
+                "name": "finding_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the comments for a finding."
+        },
+        {
+          "info": {
+            "name": "Create a comment for a finding.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nebulock.io/api/v2/findings/:finding_id/comments",
+            "params": [
+              {
+                "name": "finding_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create a comment for a finding."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

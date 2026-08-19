@@ -1,0 +1,359 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nebulock Public Entities Hunts API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key-ID",
+      "value": "{{X-API-Key-ID}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Hunts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a paginated list of hunt suggestions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nebulock.io/public/v1/hunt_suggestions"
+          },
+          "docs": "Retrieve a paginated list of hunt suggestions."
+        },
+        {
+          "info": {
+            "name": "Generate hunt suggestions based on threat intelligence context.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nebulock.io/public/v1/hunt_suggestions"
+          },
+          "docs": "Generate hunt suggestions based on threat intelligence context."
+        },
+        {
+          "info": {
+            "name": "Retrieve hunt suggestions for a specific job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nebulock.io/public/v1/hunt_suggestions/jobs/:job_id",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve hunt suggestions for a specific job."
+        },
+        {
+          "info": {
+            "name": "Retrieve a single hunt suggestion by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nebulock.io/public/v1/hunt_suggestions/:hunt_suggestion_id",
+            "params": [
+              {
+                "name": "hunt_suggestion_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a single hunt suggestion by ID."
+        },
+        {
+          "info": {
+            "name": "Return available agent versions, supported modes, defaults, and deprecation status.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nebulock.io/public/v1/hunt_agent_versions"
+          },
+          "docs": "Return available agent versions, supported modes, defaults, and deprecation status."
+        },
+        {
+          "info": {
+            "name": "Retrieve a paginated list of hunt reports.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nebulock.io/public/v1/hunt_reports"
+          },
+          "docs": "Retrieve a paginated list of hunt reports."
+        },
+        {
+          "info": {
+            "name": "Retrieve a single hunt report with markdown content.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nebulock.io/public/v1/hunt_reports/:hunt_report_id",
+            "params": [
+              {
+                "name": "hunt_report_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a single hunt report with markdown content."
+        },
+        {
+          "info": {
+            "name": "Download the hunt report as a PDF file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nebulock.io/public/v1/hunt_reports/:hunt_report_id/pdf",
+            "params": [
+              {
+                "name": "hunt_report_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Download the hunt report as a PDF file."
+        },
+        {
+          "info": {
+            "name": "Retry generation of a failed hunt report.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nebulock.io/public/v1/hunt_reports/:hunt_report_id/retry",
+            "params": [
+              {
+                "name": "hunt_report_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retry generation of a failed hunt report."
+        },
+        {
+          "info": {
+            "name": "Retrieve a paginated list of hunts (default source filter 'manual').",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nebulock.io/public/v2/hunts"
+          },
+          "docs": "Retrieve a paginated list of hunts (default source filter 'manual')."
+        },
+        {
+          "info": {
+            "name": "Create a hunt with async directive processing.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nebulock.io/public/v2/hunts"
+          },
+          "docs": "Create a hunt with async directive processing."
+        },
+        {
+          "info": {
+            "name": "Get a hunt with directives, blocks, and user enrichment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nebulock.io/public/v2/hunts/:hunt_id",
+            "params": [
+              {
+                "name": "hunt_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a hunt with directives, blocks, and user enrichment."
+        },
+        {
+          "info": {
+            "name": "Update a hunt's properties.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.nebulock.io/public/v2/hunts/:hunt_id",
+            "params": [
+              {
+                "name": "hunt_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update a hunt's properties."
+        },
+        {
+          "info": {
+            "name": "Trigger report generation for a hunt.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.nebulock.io/public/v2/hunts/:hunt_id/generate_report",
+            "params": [
+              {
+                "name": "hunt_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Trigger report generation for a hunt."
+        },
+        {
+          "info": {
+            "name": "Get a directive with blocks and user enrichment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nebulock.io/public/v2/hunts/:hunt_id/directives/:directive_id",
+            "params": [
+              {
+                "name": "hunt_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "directive_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a directive with blocks and user enrichment."
+        },
+        {
+          "info": {
+            "name": "Add a new directive (follow-up query) to an existing hunt.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nebulock.io/public/v2/hunts/:hunt_id/directives",
+            "params": [
+              {
+                "name": "hunt_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Add a new directive (follow-up query) to an existing hunt."
+        },
+        {
+          "info": {
+            "name": "Retry a directive that has failed processing.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nebulock.io/public/v2/hunts/:hunt_id/directives/:directive_id/retry",
+            "params": [
+              {
+                "name": "hunt_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "directive_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retry a directive that has failed processing."
+        },
+        {
+          "info": {
+            "name": "Stop a directive that is currently being processed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nebulock.io/public/v2/hunts/:hunt_id/directives/:directive_id/stop",
+            "params": [
+              {
+                "name": "hunt_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "directive_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Stop a directive that is currently being processed."
+        },
+        {
+          "info": {
+            "name": "List append-only feedback rows for a completed hunt report.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nebulock.io/public/v2/hunt_reports/:hunt_report_id/feedback",
+            "params": [
+              {
+                "name": "hunt_report_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List append-only feedback rows for a completed hunt report."
+        },
+        {
+          "info": {
+            "name": "Create append-only feedback for a completed hunt report.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nebulock.io/public/v2/hunt_reports/:hunt_report_id/feedback",
+            "params": [
+              {
+                "name": "hunt_report_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create append-only feedback for a completed hunt report."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

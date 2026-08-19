@@ -2,10 +2,9 @@ generated: '2026-07-20'
 method: derived
 status: candidate
 source: openapi/nebulock-openapi.yml
-note: >-
-  No official hosted MCP server was found for Nebulock. This is a CANDIDATE tool
-  surface derived one-to-one from the published Nebulock Public API operations, to
-  seed an MCP server. Auth would map the X-API-Key-ID / X-API-Key-Secret headers.
+note: No official hosted MCP server was found for Nebulock. This is a CANDIDATE tool surface derived one-to-one
+  from the published Nebulock Public API operations, to seed an MCP server. Auth would map the X-API-Key-ID
+  / X-API-Key-Secret headers.
 server:
   name: nebulock
   transport: http
@@ -70,3 +69,9 @@ tools:
 - name: run_rule_scheduled_sase_public_api
   description: Trigger a retroactive run of a scheduled_sql rule.
   source_operation: openapi/nebulock-openapi.yml#run_rule_scheduled_sase_public_api
+deployment:
+  mode: none
+  verified: derived
+  tools: 18
+  checked: '2026-08-12'
+  source: catalog MCP census

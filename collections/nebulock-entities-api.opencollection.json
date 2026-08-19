@@ -1,0 +1,367 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nebulock Public Entities API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key-ID",
+      "value": "{{X-API-Key-ID}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Entities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a list of actors from your organization.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nebulock.io/public/v1/entities/actors"
+          },
+          "docs": "Retrieve a list of actors from your organization."
+        },
+        {
+          "info": {
+            "name": "Create a new actor from an ActorCorrelation object.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nebulock.io/public/v1/entities/actors"
+          },
+          "docs": "Create a new actor from an ActorCorrelation object."
+        },
+        {
+          "info": {
+            "name": "Get one actor by ID with linked users and hosts.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nebulock.io/public/v1/entities/actors/:actor_id",
+            "params": [
+              {
+                "name": "actor_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get one actor by ID with linked users and hosts."
+        },
+        {
+          "info": {
+            "name": "Update an actor's description, risk_level, tags, groups or escalation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.nebulock.io/public/v1/entities/actors/:actor_id",
+            "params": [
+              {
+                "name": "actor_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update an actor's description, risk_level, tags, groups or escalation."
+        },
+        {
+          "info": {
+            "name": "Bulk-create actors with linked users and hosts from flat rows.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nebulock.io/public/v1/entities/actors/populated"
+          },
+          "docs": "Bulk-create actors with linked users and hosts from flat rows."
+        },
+        {
+          "info": {
+            "name": "Refresh an actor's keyword search index.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.nebulock.io/public/v1/entities/actors/:actor_id/update_search_index",
+            "params": [
+              {
+                "name": "actor_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Refresh an actor's keyword search index."
+        },
+        {
+          "info": {
+            "name": "Link an existing user to an actor.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nebulock.io/public/v1/entities/actors/:actor_id/users/:user_id",
+            "params": [
+              {
+                "name": "actor_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Link an existing user to an actor."
+        },
+        {
+          "info": {
+            "name": "Update a user linked to an actor.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.nebulock.io/public/v1/entities/actors/:actor_id/users/:user_id",
+            "params": [
+              {
+                "name": "actor_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update a user linked to an actor."
+        },
+        {
+          "info": {
+            "name": "Remove a user from an actor (user record is retained).",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.nebulock.io/public/v1/entities/actors/:actor_id/users/:user_id",
+            "params": [
+              {
+                "name": "actor_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove a user from an actor (user record is retained)."
+        },
+        {
+          "info": {
+            "name": "Link an existing host to an actor.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nebulock.io/public/v1/entities/actors/:actor_id/hosts/:host_id",
+            "params": [
+              {
+                "name": "actor_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "host_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Link an existing host to an actor."
+        },
+        {
+          "info": {
+            "name": "Update a host linked to an actor.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.nebulock.io/public/v1/entities/actors/:actor_id/hosts/:host_id",
+            "params": [
+              {
+                "name": "actor_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "host_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update a host linked to an actor."
+        },
+        {
+          "info": {
+            "name": "Remove a host from an actor (host record is retained).",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.nebulock.io/public/v1/entities/actors/:actor_id/hosts/:host_id",
+            "params": [
+              {
+                "name": "actor_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "host_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove a host from an actor (host record is retained)."
+        },
+        {
+          "info": {
+            "name": "Create a host and link it to an actor.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nebulock.io/public/v1/entities/actors/:actor_id/new_host",
+            "params": [
+              {
+                "name": "actor_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create a host and link it to an actor."
+        },
+        {
+          "info": {
+            "name": "Create a user and link it to an actor.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nebulock.io/public/v1/entities/actors/:actor_id/new_user",
+            "params": [
+              {
+                "name": "actor_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create a user and link it to an actor."
+        },
+        {
+          "info": {
+            "name": "Update a host by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.nebulock.io/public/v1/entities/hosts/:host_id",
+            "params": [
+              {
+                "name": "host_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update a host by ID."
+        },
+        {
+          "info": {
+            "name": "List identity users for your organization.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nebulock.io/public/v1/entities/users"
+          },
+          "docs": "List identity users for your organization."
+        },
+        {
+          "info": {
+            "name": "Create one or more users (JSON array, up to 1000).",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nebulock.io/public/v1/entities/users"
+          },
+          "docs": "Create one or more users (JSON array, up to 1000)."
+        },
+        {
+          "info": {
+            "name": "Update a user by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.nebulock.io/public/v1/entities/users/:user_id",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update a user by ID."
+        },
+        {
+          "info": {
+            "name": "List hosts (endpoints or machines) for your organization.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nebulock.io/public/v1/entities/hosts"
+          },
+          "docs": "List hosts (endpoints or machines) for your organization."
+        },
+        {
+          "info": {
+            "name": "Create one or more hosts (JSON array, up to 1000).",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nebulock.io/public/v1/entities/hosts"
+          },
+          "docs": "Create one or more hosts (JSON array, up to 1000)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
