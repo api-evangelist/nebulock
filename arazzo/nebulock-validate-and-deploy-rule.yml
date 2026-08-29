@@ -4,8 +4,8 @@ info:
   version: 1.0.0
   summary: Validate rule content, create it inactive, then activate it.
 sourceDescriptions:
-- name: nebulock
-  url: ../openapi/nebulock-openapi.yml
+- name: rulesApi
+  url: ../openapi/nebulock-rules-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: validateAndDeployRule

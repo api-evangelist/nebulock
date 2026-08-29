@@ -4,8 +4,8 @@ info:
   version: 1.0.0
   summary: Create a hunt, add a follow-up directive, then generate and fetch its report.
 sourceDescriptions:
-- name: nebulock
-  url: ../openapi/nebulock-openapi.yml
+- name: huntsApi
+  url: ../openapi/nebulock-hunts-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: runHuntAndReport
