@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Nebulock Public Entities API
   version: v2
@@ -19,7 +19,7 @@ paths:
   /public/v1/entities/actors:
     get:
       operationId: get_actors
-      summary: Retrieve a list of actors from your organization.
+      summary: Retrieve a list of actors from your organization
       tags:
       - Entities
       responses:
@@ -37,7 +37,7 @@ paths:
           description: Rate limit exceeded (60 requests per minute)
     post:
       operationId: create_actor
-      summary: Create a new actor from an ActorCorrelation object.
+      summary: Create a new actor from an ActorCorrelation object
       tags:
       - Entities
       responses:
@@ -56,7 +56,7 @@ paths:
   /public/v1/entities/actors/{actor_id}:
     get:
       operationId: get_actor
-      summary: Get one actor by ID with linked users and hosts.
+      summary: Get one actor by ID with linked users and hosts
       tags:
       - Entities
       responses:
@@ -80,7 +80,7 @@ paths:
           type: string
     patch:
       operationId: update_actor_description
-      summary: Update an actor's description, risk_level, tags, groups or escalation.
+      summary: Update an actor's description, risk_level, tags, groups or escalation
       tags:
       - Entities
       responses:
@@ -105,7 +105,7 @@ paths:
   /public/v1/entities/actors/populated:
     post:
       operationId: create_populated_actors
-      summary: Bulk-create actors with linked users and hosts from flat rows.
+      summary: Bulk-create actors with linked users and hosts from flat rows
       tags:
       - Entities
       responses:
@@ -124,7 +124,7 @@ paths:
   /public/v1/entities/actors/{actor_id}/update_search_index:
     patch:
       operationId: update_actor_search
-      summary: Refresh an actor's keyword search index.
+      summary: Refresh an actor's keyword search index
       tags:
       - Entities
       responses:
@@ -149,7 +149,7 @@ paths:
   /public/v1/entities/actors/{actor_id}/users/{user_id}:
     post:
       operationId: associate_user_with_actor
-      summary: Link an existing user to an actor.
+      summary: Link an existing user to an actor
       tags:
       - Entities
       responses:
@@ -178,7 +178,7 @@ paths:
           type: string
     patch:
       operationId: update_actor_user_api
-      summary: Update a user linked to an actor.
+      summary: Update a user linked to an actor
       tags:
       - Entities
       responses:
@@ -207,7 +207,7 @@ paths:
           type: string
     delete:
       operationId: unlink_user_from_actor
-      summary: Remove a user from an actor (user record is retained).
+      summary: Remove a user from an actor (user record is retained)
       tags:
       - Entities
       responses:
@@ -237,7 +237,7 @@ paths:
   /public/v1/entities/actors/{actor_id}/hosts/{host_id}:
     delete:
       operationId: unlink_host_from_actor
-      summary: Remove a host from an actor (host record is retained).
+      summary: Remove a host from an actor (host record is retained)
       tags:
       - Entities
       responses:
@@ -266,7 +266,7 @@ paths:
           type: string
     post:
       operationId: associate_host_with_actor
-      summary: Link an existing host to an actor.
+      summary: Link an existing host to an actor
       tags:
       - Entities
       responses:
@@ -295,7 +295,7 @@ paths:
           type: string
     patch:
       operationId: update_actor_host_api
-      summary: Update a host linked to an actor.
+      summary: Update a host linked to an actor
       tags:
       - Entities
       responses:
@@ -325,7 +325,7 @@ paths:
   /public/v1/entities/actors/{actor_id}/new_host:
     post:
       operationId: create_host_for_actor_api
-      summary: Create a host and link it to an actor.
+      summary: Create a host and link it to an actor
       tags:
       - Entities
       responses:
@@ -350,7 +350,7 @@ paths:
   /public/v1/entities/actors/{actor_id}/new_user:
     post:
       operationId: create_user_for_actor_api
-      summary: Create a user and link it to an actor.
+      summary: Create a user and link it to an actor
       tags:
       - Entities
       responses:
@@ -375,7 +375,7 @@ paths:
   /public/v1/entities/hosts/{host_id}:
     patch:
       operationId: update_host_record
-      summary: Update a host by ID.
+      summary: Update a host by ID
       tags:
       - Entities
       responses:
@@ -400,7 +400,7 @@ paths:
   /public/v1/entities/users:
     get:
       operationId: get_users
-      summary: List identity users for your organization.
+      summary: List identity users for your organization
       tags:
       - Entities
       responses:
@@ -418,7 +418,7 @@ paths:
           description: Rate limit exceeded (60 requests per minute)
     post:
       operationId: create_users
-      summary: Create one or more users (JSON array, up to 1000).
+      summary: Create one or more users (JSON array, up to 1000)
       tags:
       - Entities
       responses:
@@ -437,7 +437,7 @@ paths:
   /public/v1/entities/users/{user_id}:
     patch:
       operationId: update_user
-      summary: Update a user by ID.
+      summary: Update a user by ID
       tags:
       - Entities
       responses:
@@ -462,7 +462,7 @@ paths:
   /public/v1/entities/hosts:
     get:
       operationId: get_hosts
-      summary: List hosts (endpoints or machines) for your organization.
+      summary: List hosts (endpoints or machines) for your organization
       tags:
       - Entities
       responses:
@@ -480,7 +480,7 @@ paths:
           description: Rate limit exceeded (60 requests per minute)
     post:
       operationId: create_hosts
-      summary: Create one or more hosts (JSON array, up to 1000).
+      summary: Create one or more hosts (JSON array, up to 1000)
       tags:
       - Entities
       responses:

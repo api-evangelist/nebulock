@@ -1,10 +1,7 @@
 {
   "provider": "nebulock",
   "sources": [
-    "nebulock-entities-api-openapi.yml",
-    "nebulock-findings-api-openapi.yml",
-    "nebulock-hunts-api-openapi.yml",
-    "nebulock-rules-api-openapi.yml"
+    "_original/nebulock-openapi.yml"
   ],
   "outputs": [
     "nebulock-entities-api-openapi.yml",
@@ -15,6 +12,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "nebulock-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "nebulock-entities-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nebulock-findings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nebulock-hunts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nebulock-rules-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
