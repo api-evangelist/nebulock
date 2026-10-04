@@ -124,6 +124,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/nebulock-capability-edges.yml
+  name: Nebulock Business Capability Map
 - type: Documentation
   url: https://docs.nebulock.io/
 - type: APIReference

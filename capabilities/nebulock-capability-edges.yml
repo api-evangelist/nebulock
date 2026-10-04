@@ -1,0 +1,59 @@
+slug: nebulock
+provider: Nebulock
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Hunts
+  spec_file: nebulock-hunts-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.88
+  evidence: POST /public/v1/hunt_suggestions "Generate hunt suggestions based on threat intelligence context";
+    "Retrieve a single hunt report with markdown content"
+  reason: Threat hunts, hunt suggestions driven by threat intelligence, and hunt reports are proactive
+    SOC detection activity, squarely within threat detection and response management.
+- tag: Findings
+  spec_file: nebulock-findings-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.85
+  evidence: 'GET /api/v2/findings/{finding_id} "Retrieve the details for a specific finding"; platform
+    described as "AI threat-hunting platform: Findings, Entities ... and detection Rules"'
+  reason: Findings are security detections triaged and commented on by analysts — classic SOC alert/investigation
+    workflow, mapping to threat detection and response. Not vulnerability scanning output nor audit findings,
+    given the threat-hunting framing.
+- tag: Rules
+  spec_file: nebulock-rules-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.85
+  evidence: POST /public/v1/rules/validate "Validate rule content (Sigma YAML or SQL)"; "Create a rule
+    in your organization (sigma, scheduled_sql, signal_combination)"
+  reason: These are security detection rules (Sigma/SQL) authored, validated and executed against telemetry
+    — detection engineering within SOC/SIEM operations. Not business rules or policy management despite
+    the generic tag name.
+- tag: Entities
+  spec_file: nebulock-entities-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.7
+  evidence: '"Entities (actors/users/hosts)" ... "Update an actor''s description, risk_level, tags, groups
+    or escalation" on the "Nebulock AI threat-hunting platform"'
+  reason: Entities here are the actor/user/host nodes of the security Context Graph used for threat hunting,
+    with risk level and escalation attributes. That is security operations entity context supporting detection
+    and response, not customer or HR master data. Sub-capability is slightly uncertain (could be read
+    as general security governance), hence 0.7.
