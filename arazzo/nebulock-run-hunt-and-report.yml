@@ -3,6 +3,17 @@ info:
   title: Run a Nebulock hunt and generate a report
   version: 1.0.0
   summary: Create a hunt, add a follow-up directive, then generate and fetch its report.
+  x-realizes-capability-ids:
+  - BC-620.30
+  x-capability-derivation:
+    method: 'deterministic join: sourceDescriptions -> per-tag OpenAPI -> tag/capability edge. No classification at this step.'
+    min_confidence: 0.7
+    sources:
+    - capability_id: BC-620.30
+      capability_name: Threat Detection & Response Management
+      spec: nebulock-hunts-api-openapi.yml
+      confidence: 0.88
+    model: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities, CC BY 4.0
 sourceDescriptions:
 - name: huntsApi
   url: ../openapi/nebulock-hunts-api-openapi.yml
