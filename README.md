@@ -64,6 +64,128 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Nebulock is a company surfaced as a portfolio company of bain-capital-ventures and added to the API Evangelist network as a stub for enrichment. Sector: security. This profile is a lead awaiting the enrichment pipeline.
+Nebulock is an agentic, contextual security-analytics platform built for hunt-first security operations. A swarm of AI agents continuously hunts across cloud, SaaS, network, endpoint, and identity telemetry, maintaining a behavioral Context Graph to surface endpoint- and identity-based threats, close detection coverage gaps, and catch human and agentic insider threats before they escalate into incidents. The platform runs hypothesis-driven investigations, writes and deploys detection rules (Sigma and scheduled SQL), retrohunts historical data, simulates attacks, and maps coverage against MITRE ATT&CK. Nebulock exposes a customer-facing public API for Findings, Entities (actors/users/hosts correlation), Hunts, hunt suggestions and reports, and detection Rules, authenticated with per-organization API keys. The company raised a $25M Series A and is backed by Bain Capital Ventures.
 
-Backed by: bain-capital-ventures — https://nebulock.io/
+**Areas:** Company · Security · Threat Hunting · Threat Detection · Security Operations · Detection Engineering · AI Agents · SIEM
+
+## Nebulock on APIs.io
+
+Everything profiled for Nebulock is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/nebulock/](https://apis.io/providers/nebulock/)** — or go straight to one of the APIs or properties below.
+
+### APIs (4)
+
+- [Nebulock Entities API](https://apis.io/apis/nebulock/nebulock-entities-api/) — Actors, users, and hosts — the identity/asset correlation graph.
+- [Nebulock Findings API](https://apis.io/apis/nebulock/nebulock-findings-api/) — Retrieve and manage security findings and their comments.
+- [Nebulock Hunts API](https://apis.io/apis/nebulock/nebulock-hunts-api/) — Threat hunts, hunt suggestions, and hunt reports.
+- [Nebulock Rules API](https://apis.io/apis/nebulock/nebulock-rules-api/) — Create, validate, and run detection rules (Sigma / scheduled SQL).
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Arazzo workflows (2)
+
+Multi-step workflows that chain operations into a business task.
+
+- [Run a Nebulock hunt and generate a report](https://apis.io/arazzos/nebulock/nebulock-run-hunt-and-report/)
+- [Validate and deploy a Nebulock detection rule](https://apis.io/arazzos/nebulock/nebulock-validate-and-deploy-rule/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [nebulock](https://apis.io/servers/nebulock/nebulock/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Nebulock Agentic Access](https://apis.io/agentic-access/nebulock/nebulock-agentic-access/)
+
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [Nebulock Public Entities API](https://apis.io/collections/nebulock/open-nebulock-entities-api/)
+- [Nebulock Public Entities Findings API](https://apis.io/collections/nebulock/open-nebulock-findings-api/)
+- [Nebulock Public Entities Hunts API](https://apis.io/collections/nebulock/open-nebulock-hunts-api/)
+- [Nebulock Public Entities Rules API](https://apis.io/collections/nebulock/open-nebulock-rules-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Nebulock Overlay](https://apis.io/overlays/nebulock/nebulock-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Nebulock Authentication](https://apis.io/security/nebulock/nebulock-authentication/)
+- [Nebulock Domain Security](https://apis.io/security/nebulock/nebulock-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://nebulock.io/)
+- [Documentation](https://docs.nebulock.io/)
+- [Getting started](https://docs.nebulock.io/docs/access)
+- [API reference](https://docs.nebulock.io/reference/getting-started-with-the-nebulock-findings-api)
+- [Support](https://docs.nebulock.io/docs/help)
+- [Blog](https://nebulock.io/blog)
+- [Trust centre](https://trust.nebulock.io/)
+- [GitHub](https://github.com/nebulock)
+
+## API Evangelist rating
+
+**Kin Score 28.8** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 49.0 |
+| Contract governance | 4.5 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 32.7 |
+| Access clarity | 7.9 |
+
+**Agent readiness 18.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 21.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/nebulock/](https://apis.io/providers/nebulock/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Nebulock: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/nebulock/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
